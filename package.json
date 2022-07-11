@@ -1,0 +1,16 @@
+{
+  "name": "lambda-wrapper-script-secrets-as-env",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "AWS_REGION=eu-north-1 AWS_LAMBDA_EXEC_WRAPPER=/opt/get-secrets-layer AWS_LAMBDA_FUNCTION_NAME=test ./get-secrets-layer",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "Philip Andersson",
+  "license": "MIT",
+  "devDependencies": {
+    "aws-sdk": "^2.1171.0"
+  }
+}
