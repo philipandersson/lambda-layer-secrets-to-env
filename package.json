@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "AWS_REGION=eu-north-1 AWS_LAMBDA_EXEC_WRAPPER=/opt/get-secrets-layer AWS_LAMBDA_FUNCTION_NAME=test ./get-secrets-layer",
+    "start": "AWS_REGION=eu-north-1 AWS_LAMBDA_EXEC_WRAPPER=/opt/secrets-to-env-wrapper AWS_LAMBDA_FUNCTION_NAME=test ./secrets-to-env-wrapper",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",
