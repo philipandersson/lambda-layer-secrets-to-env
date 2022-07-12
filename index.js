@@ -1,8 +1,14 @@
 import AWS from 'aws-sdk';
 import fs from 'fs';
 
+const {
+    AWS_LAMBDA_FUNCTION_NAME,
+    AWS_REGION,
+    SECRET_NAME,
+} = process.env;
+
 const secretsManager = new AWS.SecretsManager({
-    region: process.env.AWS_REGION,
+    region: AWS_REGION,
 });
 
 async function getSecret(secretName) {
@@ -22,7 +28,8 @@ async function main() {
     }
 
     const tmpFile = process.argv[2];
-    const secret = await getSecret(`lambda/${process.env.AWS_LAMBDA_FUNCTION_NAME}`);
+    const secretName = SECRET_NAME ?? `lambda/${AWS_LAMBDA_FUNCTION_NAME}`;
+    const secret = await getSecret(secretName);
     const fsStream = fs.createWriteStream(tmpFile);
 
     for (const [key, value] of Object.entries(secret)) {
