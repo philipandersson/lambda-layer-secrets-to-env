@@ -19,12 +19,12 @@ aws lambda publish-layer-version \
 
 ## Use the Lambda layer
 **Note:** This overwrites the environment variables to set `AWS_LAMBDA_EXEC_WRAPPER` which points to the wrapper script (`/opt/secrets-to-env-wrapper`).
-Replace `${LAMBDA_FN_NAME}` with your Lambda function name.
+Replace `${LAMBDA_FN_NAME}` with your Lambda function name. You supply the secret name via the environment variable `SECRET_NAME`.
 
 ```
 aws lambda update-function-configuration \
  --function-name ${LAMBDA_FN_NAME} \
- --environment Variables={AWS_LAMBDA_EXEC_WRAPPER=/opt/secrets-to-env-wrapper}
+ --environment Variables={AWS_LAMBDA_EXEC_WRAPPER=/opt/secrets-to-env-wrapper,SECRET_NAME=secret}
  --layers $(aws lambda list-layer-versions --layer-name secrets-to-env-wrapper \
  --max-items 1 --no-paginate --query 'LayerVersions[0].LayerVersionArn' \
  --output text)
