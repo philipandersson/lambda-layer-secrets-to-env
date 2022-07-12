@@ -3,6 +3,8 @@ AWS Lambda layer that securely fetches secrets from AWS Secrets Manager and inje
 It uses as an extension wrapper script to invoke the fetching of secrets during the `Init` phase of the Lambda lifecycle.
 If you use containerized Lambdas you should instead of using a zipped Layer, include the code into your `Dockerfile`.
 
+![Lambda Lifecycle](https://docs.aws.amazon.com/lambda/latest/dg/images/Overview-Successful-Invokes.png)
+
 ## Create Lambda layer
 Creates a zip archive containing the Lambda layer and publishes it.
 ```
