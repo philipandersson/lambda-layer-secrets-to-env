@@ -7,7 +7,7 @@ If you use containerized Lambdas you should instead of using a zipped Layer, inc
 
 ## Create Lambda layer
 Creates a zip archive containing the Lambda layer and publishes it.
-```
+```shell
 npm install
 chmod +x secrets-to-env-wrapper
 zip -r layer.zip .
@@ -19,9 +19,10 @@ aws lambda publish-layer-version \
 
 ## Use the Lambda layer
 **Note:** This overwrites the environment variables to set `AWS_LAMBDA_EXEC_WRAPPER` which points to the wrapper script (`/opt/secrets-to-env-wrapper`).
+
 Replace `${LAMBDA_FN_NAME}` with your Lambda function name. You supply the secret name via the environment variable `SECRET_NAME`.
 
-```
+```shell
 aws lambda update-function-configuration \
  --function-name ${LAMBDA_FN_NAME} \
  --environment Variables={AWS_LAMBDA_EXEC_WRAPPER=/opt/secrets-to-env-wrapper,SECRET_NAME=secret}
